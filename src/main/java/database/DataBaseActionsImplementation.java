@@ -383,9 +383,13 @@ public class DataBaseActionsImplementation implements DataBaseActions {
 
             System.out.println("Enter the idstudent which you need to find:");
 
-            // Verify if the user type from console a number
-            if (scanner.hasNextInt()) {
-                idStudent = scanner.nextInt();
+            // Verify if the user type from console a String and then convert to an Int
+            if (scanner.hasNextLine()) {
+                String idStudentString = scanner.nextLine();
+
+                try {
+                    // Convert the String to an Int
+                    idStudent = Integer.parseInt(idStudentString);
 
                 // Find the student by idStudent
                 ResultSet rs = statement.executeQuery("SELECT * " +
@@ -409,7 +413,10 @@ public class DataBaseActionsImplementation implements DataBaseActions {
                 statement.close();
                 connection.close();
 
+            } catch (NumberFormatException ex) {
+                    System.out.println("Invalid input: " + ex.getMessage());
             }
+        }
 
         } catch (SQLException e){
             System.out.println("Error message: " + e.getMessage());
