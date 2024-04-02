@@ -308,7 +308,7 @@ public class DataBaseActionsImplementation implements DataBaseActions {
                     }
 
                 } catch (NumberFormatException ex) {
-                    System.out.println();
+                    System.out.println("Invalid input: " + ex.getMessage());
                 }
             } else {
                 System.out.println("Please enter a correct value.");
